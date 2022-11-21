@@ -7,6 +7,8 @@ What I Learned:eNet custom networking solutions,
 
 IP networking,
 
+Cyber security,
+
 Databases,
 
 LAN and WAN networking,
