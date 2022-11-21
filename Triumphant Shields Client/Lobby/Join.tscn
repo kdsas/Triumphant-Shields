@@ -1,0 +1,172 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Lobby/Join.gd" type="Script" id=1]
+[ext_resource path="res://Lobby/WaitingRoom.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Font/AncientModernTales-a7Po.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://GUI/ChatterCanvas.tscn" type="PackedScene" id=4]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.278431, 0.286275, 0.27451, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="DynamicFont" id=2]
+size = 44
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 44
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 58
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 37
+extra_spacing_char = 2
+font_data = ExtResource( 3 )
+
+[node name="Join" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.0
+margin_top = -8.0
+margin_bottom = 2.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_left = 0.000689846
+anchor_top = 0.00115917
+anchor_right = 1.00069
+anchor_bottom = 1.00116
+margin_left = -2.70709
+margin_top = -0.878655
+margin_right = 3.29272
+margin_bottom = 24.1209
+color = Color( 0.466667, 0.529412, 0.352941, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="JoinButton" type="Button" parent="ColorRect"]
+anchor_top = 0.00115927
+anchor_bottom = 0.00115927
+margin_left = 453.962
+margin_top = 388.909
+margin_right = 594.962
+margin_bottom = 445.909
+custom_styles/normal = SubResource( 1 )
+text = "Next"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="usernameLineEdit" type="LineEdit" parent="ColorRect"]
+margin_left = 371.0
+margin_top = 213.0
+margin_right = 712.0
+margin_bottom = 260.0
+editable = false
+placeholder_text = " Username "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ipLineEdit" type="LineEdit" parent="ColorRect"]
+margin_left = 372.414
+margin_top = 266.74
+margin_right = 713.414
+margin_bottom = 313.74
+text = "IP"
+editable = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="portLineEdit" type="LineEdit" parent="ColorRect"]
+margin_left = 371.707
+margin_top = 326.137
+margin_right = 712.707
+margin_bottom = 373.137
+text = "Port"
+editable = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="shieldsLabel" type="Label" parent="ColorRect"]
+margin_left = 431.196
+margin_top = 39.5061
+margin_right = 573.196
+margin_bottom = 88.5061
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.854902, 0.913725, 0.890196, 1 )
+text = "Shields:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="shieldsValueLabel" type="Label" parent="ColorRect/shieldsLabel"]
+margin_left = 128.367
+margin_top = 0.535518
+margin_right = 192.367
+margin_bottom = 49.5356
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.854902, 0.913725, 0.890196, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 424.314
+margin_top = 139.0
+margin_right = 627.314
+margin_bottom = 204.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.854902, 0.913725, 0.890196, 1 )
+text = "Lobby"
+align = 1
+
+[node name="WaitingRoom" parent="." instance=ExtResource( 2 )]
+
+[node name="ItemList" parent="WaitingRoom/ColorRect" index="1"]
+items = [ "Player 1", null, false, "Player 2", null, false, "Player 3", null, false, "Player 4", null, false, "Player 5", null, false, "Player 6", null, false, "Player 7", null, false ]
+
+[node name="ChatterCanvas" parent="." instance=ExtResource( 4 )]
+
+[node name="Control" parent="ChatterCanvas" index="0"]
+margin_left = -52.8112
+margin_top = 189.726
+margin_right = 452.189
+margin_bottom = 607.726
+
+[node name="LANLabel" type="Label" parent="."]
+margin_left = 12.0208
+margin_top = 226.981
+margin_right = 200.021
+margin_bottom = 267.981
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.854902, 0.913725, 0.890196, 1 )
+text = "LAN Chat"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="ColorRect/JoinButton" to="." method="_on_JoinButton_pressed"]
+[connection signal="pressed" from="WaitingRoom/ColorRect/ReadyButton" to="." method="_on_ReadyButton_pressed"]
+
+[editable path="WaitingRoom"]
+[editable path="ChatterCanvas"]

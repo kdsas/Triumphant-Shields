@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Sprites/helios.png" type="Texture" id=1]
+[ext_resource path="res://Player/HeliosSunBall.gd" type="Script" id=2]
+[ext_resource path="res://SFX/helios.wav" type="AudioStream" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 29.8233
+
+[node name="HeliosSunBall" type="Area2D" groups=[
+"Helios",
+]]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 232.284, 166.523 )
+scale = Vector2( 1.71447, 1.24307 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 222.031, 150.614 )
+shape = SubResource( 1 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 223.445, 148.492 )
+scale = Vector2( 2.2728, -1.82837 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
+
+[connection signal="area_entered" from="." to="." method="_on_HeliosSunBall_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_HeliosSunBall_body_entered1"]
+[connection signal="body_entered" from="." to="." method="_on_HeliosSunBall_body_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

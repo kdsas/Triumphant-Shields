@@ -1,0 +1,135 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://GUI/BattlePanel.gd" type="Script" id=1]
+[ext_resource path="res://GUI/NPCPanel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://SFX/boom1.wav" type="AudioStream" id=3]
+[ext_resource path="res://Font/AncientModernTales-a7Po.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.105882, 0.0941176, 0.0941176, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.741176, 0.741176, 0.741176, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.239216, 0.227451, 0.227451, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="DynamicFont" id=1]
+size = 31
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.239216, 0.227451, 0.227451, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="DynamicFont" id=2]
+size = 31
+use_filter = true
+font_data = ExtResource( 4 )
+
+[node name="BattlePanel" type="Panel"]
+margin_left = -0.485016
+margin_top = 116.927
+margin_right = 1016.52
+margin_bottom = 351.927
+custom_styles/panel = SubResource( 3 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NPCContainer" type="GridContainer" parent="."]
+margin_top = 0.707092
+margin_right = 1017.0
+margin_bottom = 146.707
+custom_constants/hseparation = 150
+columns = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NPCPanel" parent="NPCContainer" instance=ExtResource( 2 )]
+margin_right = 0.0
+margin_bottom = 0.0
+
+[node name="NPCPanel2" parent="NPCContainer" instance=ExtResource( 2 )]
+margin_left = 150.0
+margin_right = 150.0
+margin_bottom = 0.0
+
+[node name="NPCPanel3" parent="NPCContainer" instance=ExtResource( 2 )]
+margin_left = 300.0
+margin_right = 300.0
+margin_bottom = 0.0
+
+[node name="NPCPanel4" parent="NPCContainer" instance=ExtResource( 2 )]
+margin_left = 450.0
+margin_right = 450.0
+margin_bottom = 0.0
+
+[node name="NPCPanel5" parent="NPCContainer" instance=ExtResource( 2 )]
+margin_left = 600.0
+margin_right = 600.0
+margin_bottom = 0.0
+
+[node name="NPCPanel6" parent="NPCContainer" instance=ExtResource( 2 )]
+margin_left = 750.0
+margin_right = 750.0
+margin_bottom = 0.0
+
+[node name="NPCPanel7" parent="NPCContainer" instance=ExtResource( 2 )]
+margin_left = 900.0
+margin_right = 900.0
+margin_bottom = 0.0
+
+[node name="attackButton" type="Button" parent="."]
+margin_left = 291.328
+margin_top = 172.534
+margin_right = 425.328
+margin_bottom = 228.534
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 1 )
+text = "Attack"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fleeButton" type="Button" parent="."]
+margin_left = 575.585
+margin_top = 171.12
+margin_right = 709.585
+margin_bottom = 227.12
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
+text = "Flee"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+
+[connection signal="pressed" from="attackButton" to="." method="_on_attackButton_pressed"]
+[connection signal="pressed" from="fleeButton" to="." method="_on_fleeButton_pressed"]

@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Font/AncientModernTales-a7Po.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Lobby/WaitingRoom.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 42
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.278431, 0.286275, 0.27451, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="WaitingRoom" type="Popup" groups=[
+"WaitingRoom",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_top = -10.2929
+margin_right = 1027.0
+margin_bottom = 600.707
+color = Color( 0.305882, 0.458824, 0.364706, 1 )
+
+[node name="Label" type="Label" parent="ColorRect"]
+margin_left = 271.536
+margin_top = 71.5736
+margin_right = 692.536
+margin_bottom = 118.574
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.854902, 0.913725, 0.890196, 1 )
+text = "Online Players"
+align = 1
+
+[node name="ItemList" type="ItemList" parent="ColorRect"]
+margin_left = 381.0
+margin_top = 143.0
+margin_right = 586.0
+margin_bottom = 404.0
+rect_min_size = Vector2( 200, 0 )
+custom_constants/vseparation = 10
+items = [ "Player 1", null, false, "Player 2", null, false, "Player 3", null, false, "Player 4", null, false, "Player 5", null, false, "Player 6", null, false, "Player 7", null, false ]
+same_column_width = true
+fixed_column_width = 200
+icon_mode = 0
+
+[node name="ReadyButton" type="Button" parent="ColorRect"]
+margin_left = 382.414
+margin_top = 408.234
+margin_right = 586.414
+margin_bottom = 443.234
+custom_styles/normal = SubResource( 2 )
+text = "Go"

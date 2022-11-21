@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Font/AncientModernTales-a7Po.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=1]
+size = 58
+use_filter = true
+font_data = ExtResource( 1 )
+
+[node name="NPCBattleOverPanel" type="ColorRect"]
+margin_left = 2.70705
+margin_top = 407.0
+margin_right = 1020.71
+margin_bottom = 599.0
+color = Color( 0.188235, 0.027451, 0.027451, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 231.931
+margin_top = 57.2755
+margin_right = 748.931
+margin_bottom = 140.275
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.854902, 0.913725, 0.890196, 1 )
+text = "NPC Battle Over"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://GUI/Chat.gd" type="Script" id=1]
+[ext_resource path="res://Font/AncientModernTales-a7Po.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.419608, 0.419608, 0.419608, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.172549, 0.164706, 0.164706, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="DynamicFont" id=2]
+size = 19
+use_filter = true
+font_data = ExtResource( 2 )
+
+[node name="Chat" type="Control"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btn_submit" type="Button" parent="."]
+margin_left = 845.201
+margin_top = 396.361
+margin_right = 919.201
+margin_bottom = 422.361
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Send"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ChatBox" type="VBoxContainer" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 257.95
+margin_top = 192.686
+margin_right = 487.95
+margin_bottom = 262.686
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Message" type="HBoxContainer" parent="."]
+margin_left = 761.0
+margin_top = 277.0
+margin_right = 995.0
+margin_bottom = 352.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Info" type="Label" parent="Message"]
+margin_top = 30.0
+margin_bottom = 44.0
+
+[node name="TypedMessage" type="LineEdit" parent="."]
+anchor_left = -0.00300916
+anchor_right = -0.00300916
+margin_left = 758.619
+margin_top = 360.097
+margin_right = 996.619
+margin_bottom = 389.097
+placeholder_text = "Type Message Here"
+caret_blink = true
+caret_blink_speed = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}

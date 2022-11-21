@@ -1,0 +1,698 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://Assets/Sprites/lives.png" type="Texture" id=1]
+[ext_resource path="res://GUI/PlayerCanvasLayer.gd" type="Script" id=2]
+[ext_resource path="res://GUI/Chat.tscn" type="PackedScene" id=3]
+[ext_resource path="res://GUI/PlayerStats.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Sprites/square.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/gold-xp-progress-border.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/sword.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Sprites/heal.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/Skills/glaive.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/Skills/dagger.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Sprites/Skills/helios.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/Skills/disabled_dagger.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Sprites/Skills/disabled_glaive.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Sprites/Skills/disabled_helios.png" type="Texture" id=14]
+[ext_resource path="res://GUI/Skills.gd" type="Script" id=15]
+[ext_resource path="res://GUI/Textbox.tscn" type="PackedScene" id=16]
+[ext_resource path="res://GUI/Minimap.tscn" type="PackedScene" id=17]
+[ext_resource path="res://GUI/QuestBubble.tscn" type="PackedScene" id=18]
+[ext_resource path="res://GUI/Store.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Player/XPNotifcation.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Font/AncientModernTales-a7Po.ttf" type="DynamicFontData" id=21]
+[ext_resource path="res://GUI/Instructions.tscn" type="PackedScene" id=22]
+
+[sub_resource type="Theme" id=1]
+ProgressBar/colors/ = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.839216, 0.407843, 0.560784, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.839216, 0.686275, 0.686275, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.333333, 0.282353, 0.368627, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.607843, 0.6, 0.6, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="DynamicFont" id=7]
+size = 24
+extra_spacing_char = 4
+font_data = ExtResource( 21 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 22
+extra_spacing_char = 4
+font_data = ExtResource( 21 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.419608, 0.419608, 0.419608, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[node name="PlayerCanvasLayer" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="MiscCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="MiscCanvasLayer"]
+anchor_left = -0.00069052
+anchor_top = 0.00117851
+anchor_right = -0.00069052
+anchor_bottom = 0.00117851
+margin_left = 33.2929
+margin_top = 23.7365
+margin_right = 308.293
+margin_bottom = 58.7365
+theme = SubResource( 1 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+value = 100.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="MiscCanvasLayer/ProgressBar"]
+anchor_left = -0.00257133
+anchor_top = 0.0202031
+anchor_right = -0.00257133
+anchor_bottom = 0.0202031
+margin_left = -52.9497
+margin_top = -18.6569
+margin_right = 43.0503
+margin_bottom = 77.3431
+rect_scale = Vector2( 1.4, 1.4 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="MiscCanvasLayer"]
+visible = false
+margin_left = 157.685
+margin_top = 410.829
+margin_right = 261.685
+margin_bottom = 457.829
+text = "open stats"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="mpLabel" type="Label" parent="MiscCanvasLayer"]
+margin_left = 18.0
+margin_top = 76.9289
+margin_right = 256.0
+margin_bottom = 111.929
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lostNotification" type="ColorRect" parent="MiscCanvasLayer"]
+visible = false
+margin_left = 249.352
+margin_top = 476.309
+margin_right = 626.352
+margin_bottom = 511.309
+color = Color( 0.505882, 0.054902, 0.054902, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MiscCanvasLayer/lostNotification"]
+anchor_left = -0.00187574
+anchor_right = -0.00187574
+margin_left = -9.89948
+margin_top = 8.48523
+margin_right = 366.101
+margin_bottom = 36.4852
+text = "If you've died, you lost the game and  you must quit."
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="wonNotification" type="ColorRect" parent="MiscCanvasLayer"]
+visible = false
+anchor_left = -0.000690579
+anchor_right = -0.000690579
+margin_left = 393.707
+margin_top = 220.0
+margin_right = 650.707
+margin_bottom = 258.0
+color = Color( 0.427451, 0.517647, 0.580392, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="wonLabel" type="Label" parent="MiscCanvasLayer/wonNotification"]
+margin_left = 15.0
+margin_top = 7.05026
+margin_right = 267.0
+margin_bottom = 38.0503
+custom_fonts/font = SubResource( 6 )
+text = "You've won the game."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ChatCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Chat" parent="ChatCanvasLayer" instance=ExtResource( 3 )]
+margin_left = -110.0
+margin_top = 94.0
+margin_right = -1083.0
+margin_bottom = -450.0
+
+[node name="closeChatButton" type="Button" parent="ChatCanvasLayer"]
+anchor_left = -0.000690579
+anchor_right = -0.000690579
+margin_left = 866.913
+margin_top = 517.602
+margin_right = 985.913
+margin_bottom = 549.602
+custom_styles/normal = SubResource( 4 )
+toggle_mode = true
+text = "Open/Close Chat"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatsCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerStats" parent="StatsCanvasLayer" instance=ExtResource( 4 )]
+anchor_left = 0.055
+anchor_right = 0.99
+anchor_bottom = 0.447
+margin_left = -57.32
+margin_right = -1014.76
+margin_bottom = -268.2
+
+[node name="ColorRect" parent="StatsCanvasLayer/PlayerStats" index="0"]
+margin_left = 804.0
+margin_top = 8.0
+margin_right = 1000.0
+margin_bottom = 104.0
+
+[node name="titleLabel" parent="StatsCanvasLayer/PlayerStats/ColorRect" index="0"]
+margin_left = 64.8234
+margin_top = -9.96475
+margin_right = 144.823
+margin_bottom = 12.0352
+
+[node name="courageLabel" parent="StatsCanvasLayer/PlayerStats/ColorRect" index="1"]
+margin_left = -39.3366
+margin_top = 27.1351
+margin_right = 145.663
+margin_bottom = 75.1351
+
+[node name="value" parent="StatsCanvasLayer/PlayerStats/ColorRect/courageLabel" index="0"]
+margin_left = 174.655
+margin_top = 16.9706
+margin_right = 214.655
+margin_bottom = 30.9706
+
+[node name="stealthLabel" parent="StatsCanvasLayer/PlayerStats/ColorRect" index="2"]
+margin_left = -41.4578
+margin_top = 50.4696
+margin_right = 143.542
+margin_bottom = 98.4696
+
+[node name="value" parent="StatsCanvasLayer/PlayerStats/ColorRect/stealthLabel" index="0"]
+margin_left = 176.777
+margin_top = 14.1421
+margin_right = 216.777
+margin_bottom = 28.1421
+
+[node name="wisdomLabel" parent="StatsCanvasLayer/PlayerStats/ColorRect" index="3"]
+anchor_top = 0.00642811
+anchor_bottom = 0.00642811
+margin_left = 7.63477
+margin_top = 8.34315
+margin_right = 101.635
+margin_bottom = 47.3432
+
+[node name="value" parent="StatsCanvasLayer/PlayerStats/ColorRect/wisdomLabel" index="0"]
+margin_left = 127.986
+margin_top = 15.5564
+margin_right = 167.986
+margin_bottom = 29.5564
+
+[node name="levelLabel" parent="StatsCanvasLayer/PlayerStats/ColorRect" index="4"]
+anchor_left = -0.00360793
+anchor_right = -0.00360793
+margin_left = 75.8198
+margin_top = 83.2426
+margin_right = 168.82
+margin_bottom = 108.243
+
+[node name="Label" parent="StatsCanvasLayer/PlayerStats/ColorRect/levelLabel" index="0"]
+margin_left = -29.715
+margin_top = 92.325
+margin_right = 23.285
+margin_bottom = 118.325
+
+[node name="bestscoreLabel" parent="StatsCanvasLayer/PlayerStats/ColorRect" index="5"]
+margin_left = 74.9533
+margin_top = 103.238
+margin_right = 243.953
+margin_bottom = 136.238
+
+[node name="ExperienceBar" type="Control" parent="StatsCanvasLayer/PlayerStats"]
+anchor_left = -0.000690579
+anchor_right = -0.000690579
+margin_left = 784.0
+margin_top = 145.728
+margin_right = 1017.0
+margin_bottom = 170.728
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StatsCanvasLayer/PlayerStats/ExperienceBar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="StatsCanvasLayer/PlayerStats/ExperienceBar/HBoxContainer"]
+margin_right = 233.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 233, 25 )
+texture_under = ExtResource( 5 )
+texture_over = ExtResource( 6 )
+texture_progress = ExtResource( 5 )
+tint_under = Color( 0.470588, 0.52549, 0.462745, 1 )
+tint_over = Color( 0, 1, 1, 0.137255 )
+tint_progress = Color( 0.882353, 0.0823529, 0.360784, 1 )
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_right = 4
+
+[node name="Label" type="Label" parent="StatsCanvasLayer/PlayerStats/ExperienceBar/HBoxContainer/TextureProgress"]
+anchor_left = -0.00303499
+anchor_right = 0.996965
+anchor_bottom = 1.0
+margin_left = -0.292847
+margin_right = -79.2928
+size_flags_vertical = 8
+text = "50"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="descriptionLabel" type="Label" parent="StatsCanvasLayer/PlayerStats/ExperienceBar/HBoxContainer/TextureProgress"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 98.201
+margin_top = -1.0
+margin_right = -20.7991
+size_flags_vertical = 8
+text = "to next level"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SkillsCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Skills" type="Control" parent="SkillsCanvasLayer"]
+margin_left = 10.4645
+margin_top = 123.556
+margin_right = 127.464
+margin_bottom = 249.556
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SkillsConnector" type="VBoxContainer" parent="SkillsCanvasLayer/Skills"]
+visible = false
+margin_right = 150.0
+margin_bottom = 350.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="1to4" type="VBoxContainer" parent="SkillsCanvasLayer/Skills/SkillsConnector"]
+margin_right = 150.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 0, 200 )
+custom_constants/separation = 0
+
+[node name="TextureProgress" type="TextureProgress" parent="SkillsCanvasLayer/Skills/SkillsConnector/1to4"]
+margin_right = 150.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 100, 300 )
+texture_under = ExtResource( 5 )
+texture_progress = ExtResource( 5 )
+fill_mode = 3
+tint_under = Color( 0.137255, 0.129412, 0.129412, 1 )
+tint_progress = Color( 0.564706, 0.592157, 0.560784, 1 )
+nine_patch_stretch = true
+
+[node name="FrontMargin" type="MarginContainer" parent="SkillsCanvasLayer/Skills/SkillsConnector"]
+margin_top = 300.0
+margin_right = 150.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="SkillTree" type="VBoxContainer" parent="SkillsCanvasLayer/Skills"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Helios4" type="HBoxContainer" parent="SkillsCanvasLayer/Skills/SkillTree"]
+margin_right = 98.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="SkillPoints" type="Label" parent="SkillsCanvasLayer/Skills/SkillTree/Helios4"]
+margin_top = 18.0
+margin_right = 44.0
+margin_bottom = 32.0
+text = "500 XP"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="4" type="TextureRect" parent="SkillsCanvasLayer/Skills/SkillTree/Helios4"]
+self_modulate = Color( 0.0980392, 0.109804, 0.0470588, 1 )
+margin_left = 48.0
+margin_right = 98.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+texture = ExtResource( 5 )
+expand = true
+
+[node name="TextureButton" type="TextureButton" parent="SkillsCanvasLayer/Skills/SkillTree/Helios4/4"]
+anchor_left = 0.443432
+anchor_top = 0.5
+anchor_right = 0.643432
+anchor_bottom = 0.7
+margin_left = -49.1716
+margin_top = -32.0
+margin_right = 59.8284
+margin_bottom = 43.0
+rect_min_size = Vector2( 40, 40 )
+hint_tooltip = "Helios: Give the largest boost in combat focus "
+disabled = true
+texture_normal = ExtResource( 11 )
+texture_disabled = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer2" type="MarginContainer" parent="SkillsCanvasLayer/Skills/SkillTree"]
+margin_top = 50.0
+margin_right = 98.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="Glaive3" type="HBoxContainer" parent="SkillsCanvasLayer/Skills/SkillTree"]
+margin_top = 100.0
+margin_right = 98.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="SkillPoints" type="Label" parent="SkillsCanvasLayer/Skills/SkillTree/Glaive3"]
+margin_top = 18.0
+margin_right = 44.0
+margin_bottom = 32.0
+text = "300 XP"
+
+[node name="3" type="TextureRect" parent="SkillsCanvasLayer/Skills/SkillTree/Glaive3"]
+self_modulate = Color( 0.0980392, 0.109804, 0.0470588, 1 )
+margin_left = 48.0
+margin_right = 98.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+texture = ExtResource( 5 )
+expand = true
+
+[node name="TextureButton" type="TextureButton" parent="SkillsCanvasLayer/Skills/SkillTree/Glaive3/3"]
+anchor_left = 0.443432
+anchor_top = 0.5
+anchor_right = 0.643432
+anchor_bottom = 0.7
+margin_left = -49.1716
+margin_top = -21.0
+margin_right = 61.8284
+margin_bottom = 18.0
+rect_min_size = Vector2( 40, 40 )
+hint_tooltip = "Glaive: Give a huge boost in combat focus "
+disabled = true
+texture_normal = ExtResource( 9 )
+texture_disabled = ExtResource( 13 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer3" type="MarginContainer" parent="SkillsCanvasLayer/Skills/SkillTree"]
+margin_top = 150.0
+margin_right = 98.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="Dagger2" type="HBoxContainer" parent="SkillsCanvasLayer/Skills/SkillTree"]
+margin_top = 200.0
+margin_right = 98.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="SkillPoints" type="Label" parent="SkillsCanvasLayer/Skills/SkillTree/Dagger2"]
+margin_top = 18.0
+margin_right = 44.0
+margin_bottom = 32.0
+text = "100 XP"
+
+[node name="2" type="TextureRect" parent="SkillsCanvasLayer/Skills/SkillTree/Dagger2"]
+self_modulate = Color( 0.0980392, 0.109804, 0.0470588, 1 )
+margin_left = 48.0
+margin_right = 98.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+texture = ExtResource( 5 )
+expand = true
+
+[node name="TextureButton" type="TextureButton" parent="SkillsCanvasLayer/Skills/SkillTree/Dagger2/2"]
+anchor_left = 0.443432
+anchor_top = 0.5
+anchor_right = 0.643432
+anchor_bottom = 0.7
+margin_left = -64.3934
+margin_top = -25.4142
+margin_right = 82.6066
+margin_bottom = 80.5858
+rect_min_size = Vector2( 40, 40 )
+hint_tooltip = "Dagger: Give a bigger boost in combat focus "
+disabled = true
+texture_normal = ExtResource( 10 )
+texture_disabled = ExtResource( 12 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="SkillsCanvasLayer/Skills/SkillTree"]
+margin_top = 250.0
+margin_right = 98.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="Sword1" type="HBoxContainer" parent="SkillsCanvasLayer/Skills/SkillTree"]
+margin_top = 300.0
+margin_right = 98.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="SkillPoints" type="Label" parent="SkillsCanvasLayer/Skills/SkillTree/Sword1"]
+margin_top = 18.0
+margin_right = 28.0
+margin_bottom = 32.0
+text = "0 XP"
+
+[node name="1" type="TextureRect" parent="SkillsCanvasLayer/Skills/SkillTree/Sword1"]
+self_modulate = Color( 0.0980392, 0.109804, 0.0470588, 1 )
+margin_left = 32.0
+margin_right = 82.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+texture = ExtResource( 5 )
+expand = true
+
+[node name="TextureButton" type="TextureButton" parent="SkillsCanvasLayer/Skills/SkillTree/Sword1/1"]
+anchor_left = 0.457574
+anchor_top = 0.5
+anchor_right = 0.657574
+anchor_bottom = 0.7
+margin_left = -28.8787
+margin_top = -25.2426
+margin_right = 39.1213
+margin_bottom = 17.7574
+rect_min_size = Vector2( 40, 40 )
+hint_tooltip = "Sword: Give a temporary boost in combat focus "
+texture_normal = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer4" type="MarginContainer" parent="SkillsCanvasLayer/Skills/SkillTree"]
+margin_top = 350.0
+margin_right = 98.0
+margin_bottom = 360.0
+rect_min_size = Vector2( 10, 10 )
+
+[node name="Heal0" type="HBoxContainer" parent="SkillsCanvasLayer/Skills/SkillTree"]
+margin_top = 360.0
+margin_right = 98.0
+margin_bottom = 410.0
+rect_min_size = Vector2( 0, 50 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SkillPoints" type="Label" parent="SkillsCanvasLayer/Skills/SkillTree/Heal0"]
+margin_top = 18.0
+margin_right = 28.0
+margin_bottom = 32.0
+text = "0 XP"
+
+[node name="0" type="TextureRect" parent="SkillsCanvasLayer/Skills/SkillTree/Heal0"]
+self_modulate = Color( 0.0980392, 0.109804, 0.0470588, 1 )
+margin_left = 32.0
+margin_right = 82.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+texture = ExtResource( 5 )
+expand = true
+
+[node name="TextureButton" type="TextureButton" parent="SkillsCanvasLayer/Skills/SkillTree/Heal0/0"]
+anchor_left = 0.457574
+anchor_top = 0.5
+anchor_right = 0.657574
+anchor_bottom = 0.7
+margin_left = -28.8787
+margin_top = -25.2426
+margin_right = 39.1213
+margin_bottom = 17.7574
+rect_min_size = Vector2( 40, 40 )
+hint_tooltip = "Sword: Give a temporary boost in combat focus "
+texture_normal = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="showButton" type="Button" parent="SkillsCanvasLayer"]
+anchor_left = 0.00069052
+anchor_right = 0.00069052
+margin_left = 20.7574
+margin_top = 552.577
+margin_right = 102.757
+margin_bottom = 584.577
+toggle_mode = true
+text = "Skills"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextboxCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Textbox" parent="TextboxCanvasLayer" instance=ExtResource( 16 )]
+
+[node name="MinimapCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Minimap" parent="MinimapCanvasLayer" instance=ExtResource( 17 )]
+margin_left = 652.659
+margin_top = 5.65685
+margin_right = -237.341
+margin_bottom = -466.343
+
+[node name="QuestCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="QuestBubble" parent="QuestCanvasLayer" instance=ExtResource( 18 )]
+position = Vector2( 408.001, 134.35 )
+
+[node name="openStoreButton" type="Button" parent="QuestCanvasLayer"]
+margin_left = 113.844
+margin_top = 553.664
+margin_right = 195.844
+margin_bottom = 585.664
+toggle_mode = true
+text = "Store"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="main" parent="QuestCanvasLayer" instance=ExtResource( 19 )]
+visible = false
+
+[node name="XPNotificationCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="XPNotifcation" parent="XPNotificationCanvasLayer" instance=ExtResource( 20 )]
+visible = false
+margin_left = 173.0
+margin_top = 144.0
+margin_right = 874.0
+margin_bottom = 429.0
+
+[node name="Label" parent="XPNotificationCanvasLayer/XPNotifcation" index="0"]
+margin_left = 118.794
+margin_top = 44.5477
+margin_right = 567.794
+margin_bottom = 157.547
+
+[node name="Button" parent="XPNotificationCanvasLayer/XPNotifcation" index="1"]
+margin_left = 275.064
+margin_top = 168.998
+margin_right = 403.064
+margin_bottom = 217.998
+
+[node name="InsCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Instructions" parent="InsCanvasLayer" instance=ExtResource( 22 )]
+visible = false
+
+[connection signal="pressed" from="MiscCanvasLayer/Button2" to="." method="_on_Button2_pressed"]
+[connection signal="pressed" from="ChatCanvasLayer/Chat/btn_submit" to="." method="_on_btn_submit_pressed"]
+[connection signal="toggled" from="ChatCanvasLayer/closeChatButton" to="ChatCanvasLayer/Chat" method="_on_closeChatButton_toggled"]
+[connection signal="toggled" from="SkillsCanvasLayer/showButton" to="SkillsCanvasLayer/Skills" method="_on_showButton_toggled"]
+[connection signal="toggled" from="QuestCanvasLayer/openStoreButton" to="QuestCanvasLayer/main" method="_on_openStoreButton_toggled"]
+[connection signal="pressed" from="XPNotificationCanvasLayer/XPNotifcation/Button" to="." method="_on_Button_pressed"]
+
+[editable path="ChatCanvasLayer/Chat"]
+[editable path="StatsCanvasLayer/PlayerStats"]
+[editable path="TextboxCanvasLayer/Textbox"]
+[editable path="XPNotificationCanvasLayer/XPNotifcation"]

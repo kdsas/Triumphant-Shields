@@ -1,0 +1,227 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://GUI/Options.gd" type="Script" id=1]
+[ext_resource path="res://Font/AncientModernTales-a7Po.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/Sprites/generic-rpg-ui-inventario02.png" type="Texture" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 37
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.572549, 0.654902, 0.521569, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.572549, 0.654902, 0.521569, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.572549, 0.654902, 0.521569, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.572549, 0.654902, 0.521569, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.572549, 0.654902, 0.521569, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.572549, 0.654902, 0.521569, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="Options" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.707031
+margin_top = 1.41423
+margin_right = 0.707031
+margin_bottom = 1.41425
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lbl_Name" type="Label" parent="."]
+anchor_top = 0.00117851
+anchor_bottom = 0.00117851
+margin_left = 385.373
+margin_top = 33.9411
+margin_right = 618.373
+margin_bottom = 74.9411
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.854902, 0.913725, 0.890196, 1 )
+text = "Options"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btn_Video" type="Button" parent="."]
+margin_left = 57.2756
+margin_top = 83.4386
+margin_right = 243.276
+margin_bottom = 113.439
+custom_styles/normal = SubResource( 2 )
+text = "Video"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btn_Audio" type="Button" parent="."]
+margin_left = 770.039
+margin_top = 100.409
+margin_right = 956.039
+margin_bottom = 130.409
+custom_styles/normal = SubResource( 3 )
+text = "Audio"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btn_Back" type="Button" parent="."]
+margin_left = 843.151
+margin_top = 12.7071
+margin_right = 926.151
+margin_bottom = 42.7071
+custom_styles/normal = SubResource( 4 )
+text = "Back"
+
+[node name="cntrl_Video" type="Control" parent="."]
+visible = false
+anchor_top = 0.25
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 0.707153
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btn_Resolution" type="OptionButton" parent="cntrl_Video"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 200.0
+margin_bottom = 70.0
+
+[node name="btn_Fullscreen" type="OptionButton" parent="cntrl_Video"]
+margin_left = 50.0
+margin_top = 100.0
+margin_right = 200.0
+margin_bottom = 120.0
+
+[node name="cntrl_Audio" type="Control" parent="."]
+visible = false
+anchor_top = 0.25
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 2.12134
+margin_bottom = 1.41418
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btn_Master_Mute" type="Button" parent="cntrl_Audio"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 200.0
+margin_bottom = 70.0
+custom_styles/normal = SubResource( 5 )
+text = "Mute Master Volume"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sldr_Master" type="HSlider" parent="cntrl_Audio"]
+margin_left = 220.0
+margin_top = 50.0
+margin_right = 370.0
+margin_bottom = 70.0
+max_value = 2000.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btn_Music_Mute" type="Button" parent="cntrl_Audio"]
+margin_left = 50.0
+margin_top = 100.0
+margin_right = 200.0
+margin_bottom = 120.0
+custom_styles/normal = SubResource( 6 )
+text = "Mute Music Volume"
+
+[node name="sldr_Music" type="HSlider" parent="cntrl_Audio"]
+margin_left = 220.0
+margin_top = 100.0
+margin_right = 370.0
+margin_bottom = 120.0
+max_value = 2000.0
+
+[node name="btn_Effects_Mute" type="Button" parent="cntrl_Audio"]
+margin_left = 50.0
+margin_top = 150.0
+margin_right = 200.0
+margin_bottom = 170.0
+custom_styles/normal = SubResource( 7 )
+text = "Mute Effects Volume"
+
+[node name="sldr_Effects" type="HSlider" parent="cntrl_Audio"]
+margin_left = 220.0
+margin_top = 150.0
+margin_right = 370.0
+margin_bottom = 170.0
+max_value = 2000.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+modulate = Color( 1, 1, 1, 0.141176 )
+margin_left = -111.0
+margin_top = -10.0
+margin_right = 1174.0
+margin_bottom = 655.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

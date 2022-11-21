@@ -1,0 +1,87 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://GUI/QuestBubble.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.572549, 0.654902, 0.521569, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.572549, 0.654902, 0.521569, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="QuestBubble" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Anchor" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Anchor"]
+margin_left = 3.53552
+margin_top = -0.707115
+margin_right = 198.536
+margin_bottom = 48.2929
+color = Color( 0.858824, 0.858824, 0.858824, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Anchor"]
+margin_left = 2.82843
+margin_top = 0.707108
+margin_right = 40.0
+margin_bottom = 40.7071
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="quest_acceptButton" type="Button" parent="Anchor"]
+margin_left = 64.3467
+margin_top = 50.2046
+margin_right = 120.347
+margin_bottom = 70.2046
+custom_styles/normal = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Accept"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="quest_declineButton2" type="Button" parent="Anchor"]
+margin_left = 128.693
+margin_top = 50.2046
+margin_right = 189.693
+margin_bottom = 70.2046
+custom_styles/normal = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Decline"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 14.307
+one_shot = true
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="pressed" from="Anchor/quest_acceptButton" to="." method="_on_quest_acceptButton_pressed"]
+[connection signal="pressed" from="Anchor/quest_declineButton2" to="." method="_on_quest_declineButton2_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]

@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Player/CamFollowP.tscn" type="PackedScene" id=1]
+[ext_resource path="res://GUI/Minimap.gd" type="Script" id=2]
+
+[node name="Minimap" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -890.0
+margin_bottom = -472.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+anchor_top = 0.00552428
+anchor_bottom = 0.00552428
+margin_right = 134.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 134, 128 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 134, 128 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="CamFollowP" parent="ViewportContainer/Viewport" instance=ExtResource( 1 )]

@@ -1,0 +1,195 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Assets/Sprites/player_spritesheet.png" type="Texture" id=1]
+[ext_resource path="res://Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Sprites/sword.png" type="Texture" id=3]
+[ext_resource path="res://Player/PlayerHealth.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Player/PlayerHealthBar.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Player/Weapon.gd" type="Script" id=6]
+[ext_resource path="res://SFX/sword.wav" type="AudioStream" id=7]
+[ext_resource path="res://SFX/dagger and glaive.wav" type="AudioStream" id=8]
+[ext_resource path="res://GUI/ManaBar.tscn" type="PackedScene" id=10]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 83.2752, 67.4657 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 154.693, 30.1901 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "swing"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "side_move"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 6 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "side_move"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "side_move"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "side_move"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=8]
+blend_point_0/node = SubResource( 5 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 6 )
+blend_point_1/pos = Vector2( 0, 1 )
+blend_point_2/node = SubResource( 7 )
+blend_point_2/pos = Vector2( 1, 0 )
+
+[sub_resource type="AnimationNodeStateMachine" id=9]
+states/Side/node = SubResource( 8 )
+states/Side/position = Vector2( 93.5, 38 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+
+[node name="Player" type="KinematicBody2D" groups=[
+"Player",
+]]
+position = Vector2( 311.127, 83.4386 )
+collision_mask = 7
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 78.1353, 81.6708 )
+scale = Vector2( 1.75, 1.75 )
+texture = ExtResource( 1 )
+hframes = 13
+frame = 1
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( -21.5957, -18.2689 )
+scale = Vector2( 1.30391, 1.6444 )
+polygon = PoolVector2Array( 40, 40, 72, 24, 120, 32, 144, 64, 112, 96, 91.8231, 93.7581, 40, 88 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( -0.707031, 0 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 8.64465
+margin_top = -32.7279
+margin_right = 278.645
+margin_bottom = 3.27206
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BulletFireLoc" type="Position2D" parent="."]
+position = Vector2( 156.367, 67.8853 )
+
+[node name="FireRate" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="HurtBox" type="Area2D" parent="."]
+position = Vector2( 48.7903, 97.5807 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2( 45.962, -14.8492 )
+shape = SubResource( 1 )
+
+[node name="Health" parent="." instance=ExtResource( 4 )]
+max_amount = 5
+
+[node name="HealthBar" parent="." instance=ExtResource( 5 )]
+margin_left = 60.8111
+margin_top = -27.5563
+margin_right = 188.81
+margin_bottom = -3.55633
+
+[node name="Weapon" type="Area2D" parent="." groups=[
+"Sword",
+]]
+visible = false
+show_behind_parent = true
+position = Vector2( 0, 20 )
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon"]
+position = Vector2( -149.2, 65.0538 )
+shape = SubResource( 2 )
+disabled = true
+
+[node name="Sprite" type="Sprite" parent="Weapon"]
+position = Vector2( 13.877, 77.6272 )
+rotation = -1.5708
+scale = Vector2( 5.7649, 4.56041 )
+texture = ExtResource( 3 )
+offset = Vector2( 5, -4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Weapon"]
+anims/swing = SubResource( 3 )
+
+[node name="AudioStreamPlayer2DSword" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+
+[node name="AudioStreamPlayer2DDaggerandGlaive" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+
+[node name="Weapons" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/side_move = SubResource( 4 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 9 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 10 )
+parameters/Side/blend_position = Vector2( 0, 0 )
+
+[node name="ManaBar" parent="." instance=ExtResource( 10 )]
+margin_left = 59.8699
+margin_top = -60.733
+margin_right = 156.87
+margin_bottom = -31.733
+value = 100.0
+
+[connection signal="timeout" from="FireRate" to="." method="_on_FireRate_timeout"]
+[connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
+[connection signal="changed" from="Health" to="HealthBar" method="set_value"]
+[connection signal="max_changed" from="Health" to="HealthBar" method="set_max"]
+[connection signal="area_entered" from="Weapon" to="Weapon" method="_on_Weapon_area_entered"]
+[connection signal="body_entered" from="Weapon" to="." method="_on_Weapon_body_entered1"]
+[connection signal="body_entered" from="Weapon" to="Weapon" method="_on_Weapon_body_entered1"]

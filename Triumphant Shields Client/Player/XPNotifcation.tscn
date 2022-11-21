@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Font/AncientModernTales-a7Po.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=1]
+size = 44
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.278431, 0.286275, 0.27451, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="XPNotifcation" type="ColorRect"]
+margin_left = 215.0
+margin_top = 159.0
+margin_right = 829.0
+margin_bottom = 440.0
+color = Color( 0.552941, 0.513726, 0.301961, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 62.2254
+margin_top = 2.12129
+margin_right = 511.225
+margin_bottom = 115.121
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.854902, 0.913725, 0.890196, 1 )
+text = "You've just won some XP !"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 239.709
+margin_top = 130.815
+margin_right = 367.709
+margin_bottom = 179.814
+custom_styles/normal = SubResource( 2 )
+text = "Claim XP"
+__meta__ = {
+"_edit_use_anchors_": false
+}

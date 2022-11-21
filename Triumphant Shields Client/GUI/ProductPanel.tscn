@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://GUI/ProductPanel.gd" type="Script" id=1]
+
+[node name="ProductPanel" type="Panel"]
+margin_right = 946.0
+margin_bottom = 50.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProductName" type="Label" parent="."]
+margin_right = 175.0
+margin_bottom = 48.0
+text = "[Product Name]"
+valign = 1
+
+[node name="Price" type="Label" parent="."]
+margin_left = 341.998
+margin_top = 4.29289
+margin_right = 428.998
+margin_bottom = 51.2929
+text = "[Price]"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hold" type="Label" parent="."]
+margin_left = 591.482
+margin_top = 11.0
+margin_right = 672.482
+margin_bottom = 45.0
+text = "0"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quantity" type="LineEdit" parent="."]
+margin_left = 773.0
+margin_top = 14.0
+margin_right = 875.0
+margin_bottom = 47.0
+placeholder_text = "Enter amount"
+__meta__ = {
+"_edit_use_anchors_": false
+}

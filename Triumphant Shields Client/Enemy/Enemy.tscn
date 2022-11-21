@@ -1,0 +1,134 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Assets/Sprites/enemy_spritesheet.png" type="Texture" id=1]
+[ext_resource path="res://Enemy/Enemy.gd" type="Script" id=2]
+[ext_resource path="res://Enemy/Healthbar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://SFX/dagger and glaive.wav" type="AudioStream" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 63.4474, 62.3013 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 58.0123, 66.8073 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 58.7194, 58.322 )
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 92.0675
+
+[sub_resource type="Animation" id=5]
+resource_name = "side_move"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 2, 4, 6, 8 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "side_move"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "side_move"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "side_move"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "side_move"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=10]
+blend_point_0/node = SubResource( 6 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 7 )
+blend_point_1/pos = Vector2( 1, 0 )
+blend_point_2/node = SubResource( 8 )
+blend_point_2/pos = Vector2( 0, 1 )
+blend_point_3/node = SubResource( 9 )
+blend_point_3/pos = Vector2( -1, 0 )
+
+[sub_resource type="AnimationNodeStateMachine" id=11]
+states/Side/node = SubResource( 10 )
+states/Side/position = Vector2( 289, 96 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
+
+[node name="Enemy" type="KinematicBody2D"]
+position = Vector2( 570.635, 270.822 )
+collision_layer = 2
+collision_mask = 5
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 6.94418, 15.1178 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+hframes = 13
+frame = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 7.29291, 16 )
+shape = SubResource( 1 )
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2( 6.36395, 12.0208 )
+shape = SubResource( 2 )
+
+[node name="HurtBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2( 7.07111, 14.8492 )
+shape = SubResource( 3 )
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+position = Vector2( 11.3138, 19.799 )
+shape = SubResource( 4 )
+
+[node name="CanvasLayer" parent="." instance=ExtResource( 3 )]
+
+[node name="ProgressBar" parent="CanvasLayer" index="0"]
+margin_left = 178.0
+margin_top = 169.0
+margin_right = 256.0
+margin_bottom = 186.0
+value = 100.0
+
+[node name="ProgressBar2" parent="CanvasLayer/ProgressBar" index="0"]
+anchor_left = 6.35783e-09
+margin_left = 4.0
+margin_top = 36.193
+margin_right = 37.5
+margin_bottom = 7.41457
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/side_move = SubResource( 5 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 11 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 12 )
+parameters/Side/blend_position = Vector2( 0, 0 )
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]
+[connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_PlayerDetection_body_entered"]
+[connection signal="body_exited" from="PlayerDetection" to="." method="_on_PlayerDetection_body_exited"]
+
+[editable path="CanvasLayer"]

@@ -1,0 +1,138 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Sprites/generic-rpg-ui-inventario02.png" type="Texture" id=1]
+[ext_resource path="res://Items/RandItem.gd" type="Script" id=2]
+
+[node name="InventoryCanvasLayer" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="Control" type="Control" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -145.865
+margin_top = 4.24264
+margin_right = -105.865
+margin_bottom = 44.2426
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="Control"]
+anchor_top = 0.0176777
+anchor_bottom = 0.0176777
+margin_right = 89.0
+margin_bottom = 16.0
+rect_scale = Vector2( 3, 3 )
+columns = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Slot1" type="TextureRect" parent="Control/GridContainer"]
+margin_right = 14.0
+margin_bottom = 15.0
+texture = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Control/GridContainer/Slot1"]
+position = Vector2( 6.26295, 6.66701 )
+
+[node name="Slot2" type="TextureRect" parent="Control/GridContainer"]
+margin_left = 18.0
+margin_right = 32.0
+margin_bottom = 15.0
+texture = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Control/GridContainer/Slot2"]
+position = Vector2( 6.86903, 6.66701 )
+
+[node name="Slot3" type="TextureRect" parent="Control/GridContainer"]
+margin_left = 36.0
+margin_right = 50.0
+margin_bottom = 15.0
+texture = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Control/GridContainer/Slot3"]
+position = Vector2( 7.07104, 6.86904 )
+
+[node name="Slot4" type="TextureRect" parent="Control/GridContainer"]
+margin_left = 54.0
+margin_right = 68.0
+margin_bottom = 15.0
+texture = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Control/GridContainer/Slot4"]
+position = Vector2( 7.27309, 6.46497 )
+
+[node name="Slot5" type="TextureRect" parent="Control/GridContainer"]
+margin_left = 72.0
+margin_right = 86.0
+margin_bottom = 15.0
+texture = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Control/GridContainer/Slot5"]
+position = Vector2( 7.07108, 7.07107 )
+
+[node name="cherriesLabel" type="Label" parent="Control"]
+anchor_top = 0.00117855
+anchor_bottom = 0.00117855
+margin_left = 16.6569
+margin_top = 45.8316
+margin_right = 24.6569
+margin_bottom = 61.8316
+text = "1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="flower1Label" type="Label" parent="Control"]
+anchor_top = 0.00117851
+anchor_bottom = 0.00117851
+margin_left = 70.0
+margin_top = 44.7102
+margin_right = 81.0
+margin_bottom = 58.7102
+text = "2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="flower2Label" type="Label" parent="Control"]
+anchor_top = 0.0542116
+anchor_bottom = 0.0542116
+margin_left = 124.0
+margin_top = 42.7102
+margin_right = 140.0
+margin_bottom = 58.7102
+text = "3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="loot1Label" type="Label" parent="Control"]
+anchor_left = -0.0360451
+anchor_top = 0.0188559
+anchor_right = -0.0360451
+anchor_bottom = 0.0188559
+margin_left = 182.149
+margin_top = 44.8818
+margin_right = 195.149
+margin_bottom = 58.8818
+text = "4"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="loot2Label" type="Label" parent="Control"]
+anchor_left = -0.0360481
+anchor_top = 0.00117855
+anchor_right = -0.0360481
+anchor_bottom = 0.00117855
+margin_left = 232.379
+margin_top = 46.1747
+margin_right = 254.379
+margin_bottom = 61.1747
+text = "5"
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Sprites/HeliosAOESmokeCloud.png" type="Texture" id=3]
+[ext_resource path="res://Player/RangedAOESkill.gd" type="Script" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 108.453
+
+[sub_resource type="Animation" id=2]
+resource_name = "Helios_anim"
+length = 0.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[node name="RangedAOESkill" type="Area2D"]
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 319.612, 291.328 )
+scale = Vector2( 1, 0.6 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 292.035, 273.65 )
+scale = Vector2( 0.749568, 0.646448 )
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Helios_anim = SubResource( 2 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 317.137, 273.297 )
+scale = Vector2( 1.11049, 0.93371 )
+texture = ExtResource( 3 )
+
+[connection signal="body_entered" from="." to="." method="_on_RangedAOESkill_body_entered"]
