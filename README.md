@@ -35,6 +35,8 @@ Level system,
 
 Score system,
 
+Quest system,
+
 Player progress and,
 
 Pixel art creation
